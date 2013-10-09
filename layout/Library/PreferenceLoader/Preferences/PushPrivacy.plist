@@ -1,0 +1,46 @@
+entry = {
+  label = PushPrivacy;
+  cell = PSLinkCell;
+  icon = "/System/Library/PreferenceBundles/SMSPreferences.bundle/icon.png";
+};
+title = PushPrivacy;
+items = (
+  {
+    cell = PSGroupCell;
+    footerText = "Select which apps hide notification text on the lock screen";
+  },
+  {
+    bundle = AppList;
+    cell = PSLinkCell;
+    label = "Private on Lock Screen";
+    isController = 1;
+    ALSettingsPath = "/var/mobile/Library/Preferences/com.rpetrich.pushprivacy.plist";
+    ALSettingsKeyPrefix = "PPPrivateOnLockScreen-";
+    ALChangeNotification = "com.rpetrich.pushprivacy.settingschanged";
+    ALSettingsDefaultValue = 0;
+    ALSectionDescriptors = (
+      {
+        items = ();
+        "footer-title" = "Select which apps hide notification text on the lock screen";
+      },
+      {
+        title = "System Applications";
+        predicate = "isSystemApplication = TRUE AND isWebApplication = FALSE";
+        "cell-class-name" = "ALSwitchCell";
+        "icon-size" = 29;
+        "suppress-hidden-apps" = 1;
+      },
+      {
+        title = "User Applications";
+        predicate = "isSystemApplication = FALSE AND isWebApplication = FALSE";
+        "cell-class-name" = "ALSwitchCell";
+        "icon-size" = 29;
+        "suppress-hidden-apps" = 1;
+      }
+    );
+  },
+  {
+    cell = PSGroupCell;
+    footerText = "© 2012-2013 Ryan Petrich";
+  }
+);
